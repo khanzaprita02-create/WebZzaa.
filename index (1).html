@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khanza Prita A | Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Warna (ubah di sini untuk ganti tema) ===== */
+:root{--bg:#0a0f1e;--bg2:#0f172a;--card:rgba(255,255,255,.05);--line:rgba(148,163,184,.2);--text:#e2e8f0;--muted:#94a3b8;--a1:#3b82f6;--a2:#38bdf8;--a3:#6366f1}
+:root[data-theme="light"]{--bg:#f1f5ff;--bg2:#e2e8f8;--card:rgba(255,255,255,.75);--line:rgba(30,58,138,.15);--text:#0f172a;--muted:#475569}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Inter,sans-serif;background:radial-gradient(circle at 20% 0,var(--bg2),var(--bg) 60%) fixed;color:var(--text);line-height:1.6}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.2}
+a{color:inherit;text-decoration:none}
+section{max-width:1000px;margin:auto;padding:80px 20px}
+h2{font-size:2rem;margin-bottom:28px}
+
+/* ===== Navbar ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:var(--card);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav b{font-family:'Space Grotesk';font-size:1.1rem}
+.menu{display:flex;gap:22px;align-items:center}
+.menu a{color:var(--muted);transition:.2s}.menu a:hover{color:var(--a2)}
+button{font:inherit;cursor:pointer;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 12px}
+#burger{display:none}
+
+/* ===== Hero ===== */
+#beranda{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+.foto{width:170px;height:170px;border-radius:50%;border:3px solid var(--a1);box-shadow:0 0 40px rgba(59,130,246,.6);object-fit:cover;background:linear-gradient(135deg,var(--a1),var(--a3))}
+#beranda h1{font-size:clamp(2rem,6vw,3.4rem)}
+.kelas{color:var(--muted)}
+.tagline{color:var(--a2);font-weight:500;min-height:1.6em}
+.tagline::after{content:"|";animation:kedip 1s infinite}
+@keyframes kedip{50%{opacity:0}}
+.btns{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;justify-content:center}
+.btn{padding:11px 22px;border-radius:12px;font-weight:500;background:linear-gradient(135deg,var(--a1),var(--a3));color:#fff;box-shadow:0 6px 24px rgba(59,130,246,.35);transition:.2s}
+.btn.alt{background:var(--card);border:1px solid var(--line);color:var(--text);box-shadow:none}
+.btn:hover{transform:translateY(-3px)}
+
+/* ===== Kartu ===== */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(10px);transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 36px rgba(59,130,246,.25)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.hobi{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.hobi .card{flex:1;min-width:150px;text-align:center;font-weight:500}
+.hobi span{font-size:2rem;display:block}
+.bar{height:8px;border-radius:8px;background:var(--line);margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--a1),var(--a2))}
+.row{display:flex;justify-content:space-between}
+.thumb{height:160px;border-radius:12px;margin-bottom:14px;display:grid;place-items:center;font-size:3rem;background:linear-gradient(135deg,var(--a1),var(--a3));overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.badge{display:inline-block;font-size:.8rem;padding:2px 10px;margin:10px 6px 14px 0;border-radius:20px;border:1px solid var(--a1);color:var(--a2)}
+.card h3{margin-bottom:6px}.card p{color:var(--muted)}
+footer{text-align:center;padding:40px 20px;color:var(--muted);border-top:1px solid var(--line)}
+.kontak{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+
+/* ===== Muncul saat scroll ===== */
+.fade{opacity:0;transform:translateY(24px);transition:.7s}
+.fade.show{opacity:1;transform:none}
+
+/* ===== HP ===== */
+@media(max-width:700px){
+ #burger{display:block}
+ .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:18px;background:var(--bg2);border-bottom:1px solid var(--line)}
+ .menu.buka{display:flex}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <b>Khanza Prita</b>
+  <div class="menu" id="menu">
+    <a href="#beranda">Beranda</a><a href="#tentang">Tentang Saya</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#kontak">Kontak</a>
+    <button id="tema" aria-label="Ganti tema">🌙</button>
+  </div>
+  <button id="burger" aria-label="Buka menu">☰</button>
+</nav>
+
+<!-- Hero / Identitas -->
+<section id="beranda">
+  <!-- Ganti foto: simpan file di folder assets/foto-profil.jpg -->
+  <img class="foto" id="foto" src="assets/foto-profil.jpg" alt="Foto profil Khanza Prita A">
+  <h1>Khanza Prita A</h1>
+  <p class="kelas">XI RPL · SMK Negeri 6 Surakarta</p>
+  <p class="tagline" id="tagline"></p>
+  <div class="btns">
+    <a class="btn" href="#projects">Lihat Project</a>
+    <a class="btn alt" href="https://github.com/khanzaprita02" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+<!-- Tentang Saya -->
+<section id="tentang" class="fade">
+  <h2>Tentang Saya</h2>
+  <p style="max-width:65ch">Saya Khanza Prita A, siswi XI RPL di SMK Negeri 6 Surakarta. Saya tertarik pada dunia pembuatan website dan terus belajar mengembangkan kemampuan di bidang pemrograman. Di luar sekolah, hobi saya adalah memasak dan bersepeda.</p>
+  <div class="hobi">
+    <div class="card"><span>🍳</span>Memasak</div>
+    <div class="card"><span>🚴</span>Bersepeda</div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="fade">
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card"><div class="row"><span>HTML</span><span>85%</span></div><div class="bar"><i style="width:85%"></i></div></div>
+    <div class="card"><div class="row"><span>CSS</span><span>80%</span></div><div class="bar"><i style="width:80%"></i></div></div>
+    <div class="card"><div class="row"><span>JavaScript</span><span>65%</span></div><div class="bar"><i style="width:65%"></i></div></div>
+    <div class="card"><div class="row"><span>Git/GitHub</span><span>60%</span></div><div class="bar"><i style="width:60%"></i></div></div>
+    <div class="card"><div class="row"><span>Desain UI dasar</span><span>60%</span></div><div class="bar"><i style="width:60%"></i></div></div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="fade">
+  <h2>Projects</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><img src="assets/project1.jpg" alt="Tampilan Website Fotorfolio" onerror="this.remove()">📷</div>
+      <h3>Website Fotorfolio</h3>
+      <p>Website portfolio untuk menampilkan koleksi foto dalam galeri yang rapi.</p>
+      <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span><br>
+      <!-- Ganti # dengan link project -->
+      <a class="btn" href="#">Lihat Project</a>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="assets/project2.jpg" alt="Tampilan Website Tanaman Prita" onerror="this.remove()">🌿</div>
+      <h3>Website Tanaman Prita</h3>
+      <p>Website yang memperkenalkan koleksi tanaman beserta informasi dan cara perawatannya.</p>
+      <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span><br>
+      <a class="btn" href="#">Lihat Project</a>
+    </article>
+  </div>
+</section>
+
+<!-- Kontak -->
+<footer id="kontak">
+  <h2>Kontak</h2>
+  <div class="kontak">
+    <a class="btn alt" href="https://github.com/khanzaprita02" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn alt" href="mailto:email@contoh.com">email@contoh.com</a>
+    <a class="btn alt" href="https://instagram.com/username" target="_blank" rel="noopener">@username</a>
+  </div>
+  <p>© 2026 Khanza Prita A</p>
+</footer>
+
+<script>
+// Avatar murid perempuan (muncul otomatis jika foto-profil.jpg belum ada)
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<rect width="200" height="200" fill="#1e3a8a"/>
+<path d="M45 110c0-45 25-70 55-70s55 25 55 70v70H45z" fill="#2b1b17"/>
+<path d="M40 200c4-32 28-48 60-48s56 16 60 48z" fill="#f8fafc"/>
+<path d="M80 152l20 22 20-22" fill="#3b82f6"/>
+<rect x="88" y="118" width="24" height="40" rx="10" fill="#e8b48f"/>
+<ellipse cx="100" cy="95" rx="38" ry="44" fill="#f2c4a0"/>
+<path d="M60 92c0-38 20-52 42-52 24 0 40 16 38 52-10-18-24-28-46-28-14 0-26 8-34 28z" fill="#2b1b17"/>
+<circle cx="86" cy="98" r="4" fill="#1e1b1b"/><circle cx="114" cy="98" r="4" fill="#1e1b1b"/>
+<path d="M88 116q12 10 24 0" fill="none" stroke="#b45a4a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="76" cy="110" r="6" fill="#f08a8a" opacity=".35"/><circle cx="124" cy="110" r="6" fill="#f08a8a" opacity=".35"/>
+</svg>`;
+const foto = document.getElementById("foto");
+const pakaiAvatar = () => { foto.onerror = null; foto.src = "data:image/svg+xml;utf8," + encodeURIComponent(svg); };
+foto.onerror = pakaiAvatar;
+if (foto.complete && foto.naturalWidth === 0) pakaiAvatar();
+
+// Efek mengetik pada tagline
+const teks = "Siswi RPL yang suka membangun website";
+const el = document.getElementById("tagline");
+let i = 0;
+(function ketik(){ if(i <= teks.length){ el.textContent = teks.slice(0, i++); setTimeout(ketik, 60); } })();
+
+// Muncul halus saat di-scroll
+const io = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add("show")), {threshold:.15});
+document.querySelectorAll(".fade").forEach(s => io.observe(s));
+
+// Menu hamburger (HP)
+const menu = document.getElementById("menu");
+document.getElementById("burger").onclick = () => menu.classList.toggle("buka");
+menu.querySelectorAll("a").forEach(a => a.onclick = () => menu.classList.remove("buka"));
+
+// Tombol gelap/terang
+const root = document.documentElement, tema = document.getElementById("tema");
+tema.onclick = () => {
+  const gelap = root.dataset.theme === "dark";
+  root.dataset.theme = gelap ? "light" : "dark";
+  tema.textContent = gelap ? "☀️" : "🌙";
+};
+</script>
+</body>
+</html>
